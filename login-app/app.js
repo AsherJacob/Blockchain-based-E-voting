@@ -17,7 +17,8 @@ const db = require('./config/keys').mongoURI;
 mongoose
   .connect(
     db,
-    { useNewUrlParser: true }
+    { useNewUrlParser: true,
+      useUnifiedTopology: true }
   )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
@@ -54,8 +55,8 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-app.use(express.static("front-end"));
-//app.use('/', require('./routes/index.js'));
+//app.use(express.static("front-end"));
+app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 
 const PORT = process.env.PORT || 5000;
