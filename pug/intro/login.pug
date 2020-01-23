@@ -1,0 +1,26 @@
+doctype html
+html
+    head
+        title index
+        link(rel="stylesheet" href="style.css")
+    body(class="login")
+        header(class="header",style="position:fixed; width:100%; background-color: transparent;")
+            ul(class="mainmenu")
+                li(class="menu")
+                    a(href="login.html") login
+                li(class="menu")
+                    a(href="register.html") Register
+            div(class="left")
+                h2 Democracy 
+        br 
+        br
+        div(class="container")
+            h1 VOTE
+            form(action="index.html",method="post")
+                div(class="tbox")
+                    input(type="text" placeholder="voterid" value="")
+                div(class="tbox")
+                    input(type="password" placeholder="voterid" value="")
+                input(class="btn" type="submit" formaction="vote.html" name="" value="LOG IN")
+            a(class ="b1" href="login.html") FORGOT PASSWORD 
+            a(class ="b2" href="register.html") REGISTER
