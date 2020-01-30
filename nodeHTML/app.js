@@ -2,22 +2,30 @@ const express = require('express');
 const path = require('path');
 const User = require('./models/User');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+
 const app = express();
 
+
+// Passport Config
+require('./config/passport')(passport);
 
 
 // DB Config
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-// mongoose
-//   .connect(
-//     db,
-//     { useNewUrlParser: true,
-//       useUnifiedTopology: true }
-//   )
-//   .then(() => console.log('MongoDB Connected'))
-//   .catch(err => console.log(err));
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true,
+      useUnifiedTopology: true }
+  )
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
+
+
 
 
 
@@ -32,20 +40,47 @@ app.get('/register', (req,res) => res.sendFile(path.join(__dirname,'front-end','
 // Registration
 app.post('/register', (req,res) => {
 
+  const { name, email, password, password2 } = req.body;
+
+  if(password !== password2){
+    res.send("Passwords do not match");
+  }
+
+  else if(password.length < 6){
+    res.send("Password must be at least 6 characters");
+  }
+  
+  else{
+    User.findOne({ email: email }).then(user => {
+      if (user) {
+        res.send("Email already exists");
+      }
+
+      else{
         const newUser = new User({
-          name: req.body.name,
-          email:req.body.email,
-          password:req.body.password
-        })
+          name,
+          email,
+          password
+        });
 
-       newUser.save();
+        bcrypt.genSalt(10, (err,salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser.save().then( () => {res.redirect('/login');}).catch(err => console.log(err));
+            
+  
+              
+          });
+        });
+    }
 
-       console.log(`user name is ${newUser.name}`);
-
+  });
 }
-)
-               
-      
+
+});
+    
+    
 
 const PORT = process.env.PORT || 5000;
 
