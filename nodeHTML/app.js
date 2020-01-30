@@ -4,6 +4,7 @@ const User = require('./models/User');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const session = require('express-session');
 
 const app = express();
 
@@ -32,10 +33,26 @@ mongoose
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
 
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Express session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+
 app.use(express.static('front-end'));
 
 app.get('/login', (req,res) => res.sendFile(path.join(__dirname,'front-end','login.html')));
 app.get('/register', (req,res) => res.sendFile(path.join(__dirname,'front-end','register.html')));
+app.get('/dashboard', (req,res) => res.sendFile(path.join(__dirname,'front-end','dashboard.html')));
 
 // Registration
 app.post('/register', (req,res) => {
@@ -80,6 +97,16 @@ app.post('/register', (req,res) => {
 
 });
     
+
+app.post('/login',(req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login'
+  })(req, res, next);
+});
+
+
+
     
 
 const PORT = process.env.PORT || 5000;
