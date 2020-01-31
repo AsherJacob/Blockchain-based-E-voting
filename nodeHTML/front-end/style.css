@@ -153,3 +153,45 @@ a.hover{
 background:#00000040;
 }
 
+.b3{
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    justify-content: space-between;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+    
+  }
+  
+  
+  .dash
+  {
+  font-family: "Monsterrat",sans-serif;
+  background: url(images.jpg);
+  background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: 100% 100%;
+  }
+
+  .regi2{
+    width: 360px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    color: purple;
+    }
+
+    
