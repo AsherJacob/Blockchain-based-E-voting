@@ -5,9 +5,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const session = require('express-session');
-
+const flash = require('connect-flash');
 const app = express();
-
 
 // Passport Config
 require('./config/passport')(passport);
@@ -33,26 +32,43 @@ mongoose
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
 
-
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Express session
 app.use(
   session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
 );
 
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+// Connect flash
+app.use(flash());
+
+// Global variables
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
+
+// For static front end
 app.use(express.static('front-end'));
 
+
+//GET Login
 app.get('/login', (req,res) => res.sendFile(path.join(__dirname,'front-end','login.html')));
+
+//GET Registration page
 app.get('/register', (req,res) => res.sendFile(path.join(__dirname,'front-end','register.html')));
-app.get('/dashboard', (req,res) => res.sendFile(path.join(__dirname,'front-end','dashboard.html')));
+
 
 // Registration
 app.post('/register', (req,res) => {
@@ -96,7 +112,20 @@ app.post('/register', (req,res) => {
 }
 
 });
- 
+
+
+ //Function to ensure you're logged in before seeing dashboard
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  else
+     res.redirect('/login');
+}
+
+
+//GET Dashboard
+app.get('/dashboard',ensureAuthenticated, (req,res) => res.sendFile(path.join(__dirname,'front-end','dashboard.html')));
+
 
 //login
 
@@ -108,6 +137,12 @@ app.post('/login',(req, res, next) => {
 });
 
 
+
+//logout
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
 
     
 
