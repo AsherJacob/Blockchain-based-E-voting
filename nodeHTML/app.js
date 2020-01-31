@@ -96,7 +96,9 @@ app.post('/register', (req,res) => {
 }
 
 });
-    
+ 
+
+//login
 
 app.post('/login',(req, res, next) => {
   passport.authenticate('local', {
