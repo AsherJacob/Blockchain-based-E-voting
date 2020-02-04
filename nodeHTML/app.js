@@ -132,7 +132,7 @@ app.get('/dashboard',ensureAuthenticated, (req,res) => res.sendFile(path.join(__
 app.post('/login',(req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/dashboard',
-    failureRedirect: '/login'
+    failureRedirect: res.send('Invalid login credentials')
   })(req, res, next);
 });
 
