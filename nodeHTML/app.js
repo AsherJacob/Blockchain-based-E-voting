@@ -126,13 +126,14 @@ function ensureAuthenticated(req, res, next) {
 //GET Dashboard
 app.get('/dashboard',ensureAuthenticated, (req,res) => res.sendFile(path.join(__dirname,'front-end','dashboard.html')));
 
+// app.get('/vote', (req,res) => res.sendFile(path.join(__dirname,'blockchain','src/index.html')) );
 
 //login
 
 app.post('/login',(req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/dashboard',
-    failureRedirect: res.send('Invalid login credentials')
+    failureRedirect: '/login'
   })(req, res, next);
 });
 
