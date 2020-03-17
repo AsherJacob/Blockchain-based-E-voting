@@ -1,0 +1,30 @@
+doctype html
+head
+    style
+             include ./style.css
+  title Register
+  link(href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet')
+  link(rel='stylesheet' href='style.css')
+header#header
+  ul.mainmenu
+    li.menu
+      a(href='/login') LOGIN
+    li.menu
+      a(href='login.html') RESULT
+  .left
+    h2
+      a(href='/') De-Mocracy
+br
+br
+.regi
+  h1 REGISTRATION 
+  form(action='/register' method='POST')
+    .tbox
+      input(type='text' placeholder='Enter your name' name='name' value='' required='')
+    .tbox
+      input(type='email' placeholder='Enter your email' name='email' value='' required='')
+    .tbox
+      input(type='password' placeholder='Enter the password' name='password' value='' required='')
+    .tbox
+      input(type='password' placeholder='Re-enter the password' name='password2' value='' required='')
+    input.btn(type='submit' name='' value='SUBMIT')
