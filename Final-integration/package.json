@@ -1,27 +1,25 @@
 {
-  "name": "node_passport_login",
+  "name": "de-mocracy",
   "version": "2.0.0",
-  "description": "Node.js authentication with Passport",
-  "main": "app.js",
+  "description": "Blockchain based E-voting",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node ./bin/www"
   },
   "keywords": [],
-  "author": "",
+  "author": "Asher Debin Joan Uday",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-ejs-layouts": "^2.5.0",
     "express-messages": "^1.0.1",
     "express-session": "^1.15.6",
+    "ganache-cli": "^6.4.3",
     "mongoose": "^5.7.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.4"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.9"
+    "web3": "^1.0.0-beta.37"
   }
 }

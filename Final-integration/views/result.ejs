@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link href="/assets/style.css" rel="stylesheet" type="type/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* .container{
+        margin-top: 30px;
+        top:20%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        color: #3498db;
+        } */
+        .header {
+            min-height: 60px;        
+        }.mainmenu {
+            float:right;
+            padding-top: 20px;  
+            background-color: transparent;
+        }
+        .menu {
+            display: inline;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding-right: 100px;
+            transition: all .5s ;
+            color: rgb(247, 247, 245);
+            text-align: center;
+            padding: 20px 40px; 
+            
+        }
+        .menu:hover {
+            color: black;
+            background-color: #ddd;
+            transition: .5s;        
+        }
+    </style>
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">De-Mocracy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav ml-auto ">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/result">Result<span class="sr-only">(current)</span></a>
+            </li>    
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            
+          </ul>
+          
+        </div>
+      </nav>
+
+    <h1 class="display-3 text-center">Election Result</h1>
+      <br>
+
+    <div class="row text-center">
+        <div class="container">
+        
+        
+            <table class="table">
+               <tr>
+                   <th>Candidate ID</th>
+                   <th>Candidate Name</th>
+                   <th>Vote Count</th>
+               </tr>
+            <% for(var i = 0 ; i < cid.length ; i++) { %>
+                <tr>
+                     <td><%= cid[i] %></td>
+                     <td><%= cname[i] %></td>
+                     <td><%= cvote[i] %></td>
+                </tr>
+         <% } %>
+           </table>
+        
+
+
+    </div>
+    </div>
+   
+
+</body>

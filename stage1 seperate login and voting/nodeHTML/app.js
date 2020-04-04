@@ -27,6 +27,10 @@ mongoose
 
 
 
+//Pug
+
+app.set('view engine', 'pug');
+
 
 
 // Express body parser
@@ -61,6 +65,8 @@ app.use(function(req, res, next) {
 
 // For static front end
 app.use(express.static('front-end'));
+
+app.get('/sample', (req,res) => res.render('index', { title: 'hey' , message: 'homie'}));
 
 
 //GET Login

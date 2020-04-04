@@ -151,10 +151,7 @@ app.get('/login', (req,res) => res.sendFile(path.join(__dirname,'front-end','log
 //GET Registration page
 app.get('/register', (req,res) => res.sendFile(path.join(__dirname,'front-end','register.html')));
 
-app.get('/sample', (req,res) => { console.log(`uid values are ${uid[0]}`);
-                                  console.log(`count = ${count}`);
-                                  res.send('ola');
-                                })
+
 
 // Registration
 app.post('/register', (req,res) => {

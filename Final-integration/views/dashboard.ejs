@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">De-Mocracy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav ml-auto ">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/result">Result</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            
+          </ul>
+          
+        </div>
+      </nav>
+   
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success!</strong> You are now logged in
+    </div>
+ 
+    <div class="container">
+      <div class="row-fluid">
+        <div class="jumbotron text-center jumbotron-fluid">
+          
+            <h1> Election 2020</h1>      
+            <p>Welcome User, this is your dashboard where you may cast your votes. Don't forget to wash your hands</p>
+          
+           
+          
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="row">
+      
+        <div class="col-sm border-right">
+          <h2 class="text-center" style="margin-inline-start: 20px;">Know your candidates</h3>
+            <br>
+          <div class="container" style="margin-left: 100px;">
+            <% for(var j = 0 ; j < cid.length ; j++) { %>
+              <div class="card" style="width:300px" >
+                <img class="card-img-top" src="https://pngimage.net/wp-content/uploads/2018/06/no-profile-image-png-4.png" alt="Candidate" style="width: 100%" >
+                <div class="card-body">
+                  <h4 class="card-title"><%= cname[j] %></h4>
+                  <!-- <p class="card-text">Currently Working as American President</p> -->
+                  <a href="https://en.wikipedia.org/wiki/Donald_Trump" class="btn btn-primary">See Profile</a>
+                </div>
+              </div>
+              <br>
+          
+       <% } %>
+            
+            <!-- <div class="card" style="width:400px" >
+              <img class="card-img-top" src="https://pmcdeadline2.files.wordpress.com/2019/10/shutterstock_editorial_10434333bm.jpg" alt="Mistred Dolan Trump" style="width: 100%" >
+              <div class="card-body">
+                <h4 class="card-title">Mistred Dolan Trump</h4>
+                <p class="card-text">Currently Working as American President</p>
+                <a href="https://en.wikipedia.org/wiki/Donald_Trump" class="btn btn-primary">See Profile</a>
+              </div>
+            </div>
+            <br>
+            
+            
+            
+              <div class="card" style="width:400px" >
+                <img class="card-img-bottom" src="https://images.livemint.com/img/2020/03/03/600x338/2019-12-21T061752Z_1_LYNXMPEFBK032_RTROPTP_3_INDIA-POLITICS_1576924651883_1583262888571.JPG" alt="Mistred Dolan Trump" style="width: 100%" >
+                <div class="card-body">
+                  <h4 class="card-title">Narendra Modi</h4>
+                  <p class="card-text">Currently Working as Indian President</p>
+                  <a href="https://en.wikipedia.org/wiki/Narendra_Modi" class="btn btn-primary">See Profile</a>
+                </div>
+              </div> -->
+            
+          </div>
+          
+          
+        </div>
+      
+        <div class="col-sm ">
+          <div class="container bg-light ">
+            <h3>Voting Booth</h3>
+            <h6>Choose your representative</h6>
+            <div class="dropdown">
+              <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="margin-top: 25px; margin-bottom: 25px;">Candidate List</button>
+              <div id="demo" class="collapse">
+                  <form id="candidateSelect" action="/dashboard" method="post">
+                      <select class="custom-select md" data-style="btn-info" name="selectpicker">
+                          <optgroup label="Select Candidate">
+                  
+                              <% for(var i = 0 ; i < cid.length ; i++) { %>
+                              
+                                  <option value="<%= cid[i] %>"><%= cname[i] %></option>
+                              
+                          <% } %>
+                              
+                          </optgroup>
+                      </select>
+                      <br>
+                      <input type="submit" value="Vote" class="btn btn-success mt-2 text-center" style="margin-top: 20px;" />
+                  </form>
+      
+              </div>
+      
+      
+            </div>
+          </div>
+        </div>
+            
+    
+    </div>
+
+
+    
+   
+ 
+   
+ 
+</body>
+</html>
